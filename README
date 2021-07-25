@@ -1,0 +1,6 @@
+Projeto para desenvolvimento de um servidor proxy residencial usando o Raspberry
+O projeto inclui manual de instalação, softwares livres
+Uso do squid - servidor proxy
+uso do squidguardian - logs de acesso dos usuários
+anydesk e ssh para suporte remoto
+a principido a interface grafica será desenvolvida em agular ou ionic
