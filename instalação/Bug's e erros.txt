@@ -1,0 +1,6 @@
+            Bug's e erros possiveis na instalação e execução
+
+1- A tela do raspberry não aparece direito no monitor (cortada)
+Abra o teminal (caso não consiga, mantenha precionada as teclas Ctrl+Alt e precione a tecla t),
+no terminal digite sudo raspi-config, selecione a opção display options e depois a opção resolution, selecione a opção que melhor se enquadra no seu monitor e reinicie o raspberry
+

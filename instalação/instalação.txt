@@ -1,0 +1,51 @@
+                    BEM VINDO À INSTALAÇÃO DO SERVIDOR PROXY
+
+1- PREPARAÇÃO DO SISTEMA
+no terminal digite:
+sudo apt-get updade && apt-get upgrade
+
+2- INSTALAÇÃO DO SSH e VNC
+no terminal digite:
+sudo raspi-config
+em interface options, habilite(enable) o VNC e o SSH
+
+3- INSTALAÇÃO DO ANYDESK
+no navegado entre no site oficial da ANYDESK (https://anydesk.com/pt/downloads/raspberry-pi), baixe o arquivo
+no terminal, navegue ate a pasta onde o arquivo ANYDESK foi baixado(geralmente na pasta de Downloads)
+digite:
+sudo dpkg -i anydesk_6.1.1-1_armhf.deb
+caso ocorra alguns erro, digite:
+sudo apt install -f
+e depois repita o processo do "dpkg"
+obs: aqui como exemplo a verção do ANYDESK é "6.1.1-1", mas com o tempo, essa verção pode variar.
+
+4- DEFINIR O IP FIXO PARA REDE CABEADA E WI-FI
+no terminal digite:
+sudo nano /etc/dhcpcd.conf
+encontre essas linhas no fim do arquivo e deixe-as como as do exemplo
+(as linhas devem conter o caractere '#', e devem estar ideinticas as de baixo, caso necessario escreva as linhas faltantes)
+
+# Example static IP configuration:
+interface eth0
+static ip_address=192.168.0.250/24
+#static ip6_address=fd51:42f8:caae:d92e::ff/64
+static routers=192.168.0.1
+static domain_name_servers=192.168.0.1 8.8.8.8 fd51:42f8:caae:d92e::1
+
+interface wlan0
+static ip_address=192.168.0.251/24
+#static ip6_address=fd51:42f8:caae:d92e::ff/64
+static routers=192.168.0.1
+static domain_name_servers=192.168.0.1 8.8.8.8 fd51:42f8:caae:d92e::1
+
+obs: "static routers", é o endereço ip do seu gatway(ex: modem da net ou do roteador que distribui os ip's na rede)
+
+5- INSTAÇÃO DO SQUID
+no terminl linux, digite:
+sudo apt update
+sudo apt install squid
+
+navegue até a pasta do SQUID (cd /etc/squid)
+digite:
+sudo cp squid.conf squid.conf.datadobackup
+
