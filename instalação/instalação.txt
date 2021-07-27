@@ -49,3 +49,7 @@ navegue até a pasta do SQUID (cd /etc/squid)
 digite:
 sudo cp squid.conf squid.conf.datadobackup
 
+6- INSTALAÇÃO DO APACHE
+no terminal linux digite:
+
+
