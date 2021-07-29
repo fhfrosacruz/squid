@@ -49,7 +49,80 @@ navegue até a pasta do SQUID (cd /etc/squid)
 digite:
 sudo cp squid.conf squid.conf.datadobackup
 
-6- INSTALAÇÃO DO APACHE
+6- INSTALAÇÃO DO LAMP
+instala o APACHE(servidor web), o MYSQL(banco de dados) e o PHP(linguagem de programação para montar uma aplicaço web)
+
+    6.1- INSTALAÇÃO DO APACHE
+    no terminal linux digite:
+    sudo apt-get update
+    sudo apt install apache2 -y
+
+    6.2- INSTALAÇÃO DO PHP
+    no terminal linux digite:
+    sudo apt install php -y
+
+    6.3- INSTALAÇÃO DO MYSQL (MariaDB Server)
+    no terminal linux digite:
+    sudo apt install mariadb-server php-mysql -y
+    sudo service apache2 restart
+
+        6.3.1- CONFIGURANDO O MYSQL
+        no terminal linux digite:
+        sudo mysql_secure_installation
+        
+        será pedida uma senha para o usuario root (a senha colocada foi: squidroot "precione enter"
+        Digite Y e pressione Enter para definir a senha de root
+        Digite uma senha no prompt Nova senha: e pressione Enter. 
+        Importante: lembre-se desta senha de root, pois você precisará dela mais tarde
+        Digite Y para remover usuários anônimos
+        *** Digite n para proibir o login de root remotamente
+        Digite Y para remover o banco de dados de teste e acesse-o
+        Digite Y para recarregar as tabelas de privilégios agora
+
+        obs: Esses comandos criarão um novo usuário com nome (admin) e senha (sua_senha).
+        Caso seja necessario.
+        no terminal linux digite:
+        sudo mysql --user=root --password
+        > create user admin@localhost identified by 'sua_senha';  // as aspas simples devem ser mantidas, e o admin pode ser substituido pelo nome que você quiser, sucedido por @localhost
+        > grant all privileges on *.* to admin@localhost;
+        > FLUSH PRIVILEGES;
+        > exit;
+
+7- INSTALAÇÃO DO PHPMYADMIN (GERENCIADOR GRÁFICO DO BANCO DE DADOS)
 no terminal linux digite:
+sudo apt install phpmyadmin -y
+    Selecione Apache2 quando solicitado e pressione a tecla Enter
+    Configurando o phpmyadmin ? 
+    selecione OK
+    Configurar banco de dados para phpmyadmin com dbconfig-common ?
+    selecione SIM
+    Digite sua senha e pressione OK (senha: squid_raspberry)
+
+sudo phpenmod mysqli
+sudo service apache2 restart
+
+obs: o acesso ao phpmyadmin é feito pelo navegador, digitando o endereço: http://localhost/phpmyadmin/
+em caso de algum erro, como "NOT FOUND", execute no terminal linux o seginte comando:
+sudo ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
+    
+obs-2: caso haja problemas para logar com o usuario root, siga esse comando para redefenir a senha do root no phpmyadmin.
+no terminal linux digite:
+sudo systemctl stop mysql
+sudo systemctl stop mariadb
+sudo mysqld_safe --skip-grant-tables --skip-networking &
+mysql -u root
+FLUSH PRIVILEGES;
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'nova-senha';   // em caso de algum erro, tente este comando: SET PASSWORD FOR 'root'@'localhost' = PASSWORD('nova-senha');
+                                                            // Certifique-se de substituir nova-senha pela senha que você vai querer colocar para o seu usuário root.
+FLUSH PRIVILEGES;
+exit;
+sudo systemctl start mysql
+sudo systemctl start mariadb
+PARA GARANTIR QUE TUDO FUNCIONE PERFEITAMENTE, REINICIE O SISTEMA.
+
+
+
+
+    
 
 
