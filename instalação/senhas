@@ -1,4 +1,12 @@
-                            SENHA DO BANCO DE DADOS PHPMYADMIN
+    SENHA DO RASPBERRY pi
+
+USUARIO: pi
+SENHA: squid-proxy   
+
+USUARIO: root
+SENHA: squidroot 
+                            
+    SENHA DO BANCO DE DADOS PHPMYADMIN
 
 USUARIO: root
 SENHA: squidroot
